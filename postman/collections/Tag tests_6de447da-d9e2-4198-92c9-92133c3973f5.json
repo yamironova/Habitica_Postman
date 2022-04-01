@@ -1,0 +1,342 @@
+{
+    "info": {
+        "_postman_id": "6b5757e2-7bc1-4af7-997b-13efffe257c7",
+        "name": "Tag tests",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Post Tag",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "var jsonData = pm.response.json();\r",
+                            "pm.test(\"Tag name is \" + jsonData.data.name, function () {\r",
+                            "    pm.collectionVariables.set(\"tag_Id\", jsonData.data.id);\r",
+                            "    pm.response.to.have.status(201);\r",
+                            "});\r",
+                            "\r",
+                            "\r",
+                            ""
+                        ],
+                        "type": "text/javascript",
+                        "id": "45845847-79bf-4cb6-9f2d-2480b7546d5d"
+                    }
+                }
+            ],
+            "id": "3c2ebef9-cf6d-4ce8-ac2e-db70365918de",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "X-Client",
+                        "value": "{{xClient}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "x-api-user",
+                        "value": "{{userId}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "x-api-key",
+                        "value": "{{API-key}}",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"name\": \"Posttag\"\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{path}}/api/v3/tags",
+                    "host": [
+                        "{{path}}"
+                    ],
+                    "path": [
+                        "api",
+                        "v3",
+                        "tags"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Get Tags",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            " var jsonData = pm.response.json();\r",
+                            "pm.test(\"find tag \" + jsonData.data[0].name, function () {\r",
+                            "\r",
+                            "    // pm.collectionVariables.set(\"tag_Id\", jsonData.data.id);\r",
+                            "    pm.response.to.have.status(200);\r",
+                            "});\r",
+                            "\r",
+                            "\r",
+                            ""
+                        ],
+                        "type": "text/javascript",
+                        "id": "4e59f3ed-c7f9-4cbc-9877-2a7ed28f156d"
+                    }
+                }
+            ],
+            "id": "2587b8f0-d329-48ec-b6e0-d91e6ee82726",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "X-Client",
+                        "type": "text",
+                        "value": "{{xClient}}"
+                    },
+                    {
+                        "key": "x-api-user",
+                        "type": "text",
+                        "value": "{{userId}}"
+                    },
+                    {
+                        "key": "x-api-key",
+                        "type": "text",
+                        "value": "{{API-key}}"
+                    }
+                ],
+                "url": {
+                    "raw": "{{path}}/api/v3/tags",
+                    "host": [
+                        "{{path}}"
+                    ],
+                    "path": [
+                        "api",
+                        "v3",
+                        "tags"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Get Tags list",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "id": "4e59f3ed-c7f9-4cbc-9877-2a7ed28f156d",
+                        "exec": [
+                            " var jsonData = pm.response.json();\r",
+                            "\r",
+                            "jsonData.data.forEach(h => \r",
+                            "{console.log(h)\r",
+                            "    pm.test(\"find tag \" + h.name, function () {\r",
+                            "    pm.expect(h.id).is.not.null;\r",
+                            "    });\r",
+                            "}\r",
+                            ");\r",
+                            ""
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "id": "c9b4398c-1601-4ecd-bb79-c107584249fb",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "X-Client",
+                        "type": "text",
+                        "value": "{{xClient}}"
+                    },
+                    {
+                        "key": "x-api-user",
+                        "type": "text",
+                        "value": "{{userId}}"
+                    },
+                    {
+                        "key": "x-api-key",
+                        "type": "text",
+                        "value": "{{API-key}}"
+                    }
+                ],
+                "url": {
+                    "raw": "{{path}}/api/v3/tags",
+                    "host": [
+                        "{{path}}"
+                    ],
+                    "path": [
+                        "api",
+                        "v3",
+                        "tags"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Get Tag",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            " var jsonData = pm.response.json();\r",
+                            "pm.test(\"find tag \" + jsonData.data.name, function () {\r",
+                            "\r",
+                            "    // pm.collectionVariables.set(\"tag_Id\", jsonData.data.id);\r",
+                            "    pm.response.to.have.status(200);\r",
+                            "});\r",
+                            "\r",
+                            "\r",
+                            ""
+                        ],
+                        "type": "text/javascript",
+                        "id": "cb8249de-e626-469d-8209-ab2f8a300ff5"
+                    }
+                }
+            ],
+            "id": "ae950b1b-ed9d-4fde-99a3-bb3e0df66251",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "X-Client",
+                        "type": "text",
+                        "value": "{{xClient}}"
+                    },
+                    {
+                        "key": "x-api-user",
+                        "type": "text",
+                        "value": "{{userId}}"
+                    },
+                    {
+                        "key": "x-api-key",
+                        "type": "text",
+                        "value": "{{API-key}}"
+                    }
+                ],
+                "url": {
+                    "raw": "{{path}}/api/v3/tags/{{tag_Id}}",
+                    "host": [
+                        "{{path}}"
+                    ],
+                    "path": [
+                        "api",
+                        "v3",
+                        "tags",
+                        "{{tag_Id}}"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Delete Tag",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "var jsonData = pm.response.json();\r",
+                            "pm.test(\"Deleting tag was success: \" + jsonData.success, function () {\r",
+                            "    pm.response.to.have.status(200);\r",
+                            "});\r",
+                            "\r",
+                            "\r",
+                            ""
+                        ],
+                        "type": "text/javascript",
+                        "id": "2661b5c7-ed3e-4f44-b1b6-85a4774b81f1"
+                    }
+                }
+            ],
+            "id": "88344347-f7c4-4a8e-ab7b-fa4784f1a340",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "DELETE",
+                "header": [
+                    {
+                        "key": "X-Client",
+                        "type": "text",
+                        "value": "{{xClient}}"
+                    },
+                    {
+                        "key": "x-api-user",
+                        "type": "text",
+                        "value": "{{userId}}"
+                    },
+                    {
+                        "key": "x-api-key",
+                        "type": "text",
+                        "value": "{{API-key}}"
+                    }
+                ],
+                "url": {
+                    "raw": "{{path}}/api/v3/tags/{{tag_Id}}",
+                    "host": [
+                        "{{path}}"
+                    ],
+                    "path": [
+                        "api",
+                        "v3",
+                        "tags",
+                        "{{tag_Id}}"
+                    ]
+                }
+            },
+            "response": []
+        }
+    ],
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ],
+                "id": "daa60d71-6fb2-4a10-98b2-5cd3aea1a870"
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ],
+                "id": "be64e478-5fce-4a3c-b55a-6d1f132a8bf9"
+            }
+        }
+    ],
+    "variable": [
+        {
+            "id": "35973455-d5a9-428c-a8cb-678c355ca3aa",
+            "key": "tag_Id",
+            "value": "49f2d02a-b7f1-4174-8b2e-b7dc1f79e003"
+        }
+    ]
+}
