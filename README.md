@@ -1,2 +1,2 @@
-# Habitica_my-tests
-my test for https://habitica.com
+# Habitica_postman
+Postman test for https://habitica.com
