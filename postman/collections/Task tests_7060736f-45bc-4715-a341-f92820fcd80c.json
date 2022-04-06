@@ -1,12 +1,12 @@
 {
     "info": {
-        "_postman_id": "6b5757e2-7bc1-4af7-997b-13efffe257c7",
-        "name": "Tag tests",
+        "_postman_id": "b3d82291-d004-4eab-bc6a-cc217ea61b7e",
+        "name": "Task tests",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
     },
     "item": [
         {
-            "name": "Post Tag",
+            "name": "Post Task",
             "event": [
                 {
                     "listen": "test",
@@ -14,8 +14,8 @@
                         "id": "45845847-79bf-4cb6-9f2d-2480b7546d5d",
                         "exec": [
                             "var jsonData = pm.response.json();\r",
-                            "pm.test(\"Tag name is \" + jsonData.data.name, function () {\r",
-                            "    pm.collectionVariables.set(\"tag_Id\", jsonData.data.id);\r",
+                            "pm.test(\"Task name is \" + jsonData.data.text, function () {\r",
+                            "    pm.collectionVariables.set(\"task_Id\", jsonData.data.id);\r",
                             "    pm.response.to.have.status(201);\r",
                             "});\r",
                             "\r",
@@ -26,7 +26,7 @@
                     }
                 }
             ],
-            "id": "3c2ebef9-cf6d-4ce8-ac2e-db70365918de",
+            "id": "16da6d49-0de5-41ca-9ef5-2417ca8a1b1e",
             "protocolProfileBehavior": {
                 "disableBodyPruning": true
             },
@@ -51,7 +51,7 @@
                 ],
                 "body": {
                     "mode": "raw",
-                    "raw": "{\r\n    \"name\": \"Posttag\"\r\n}",
+                    "raw": "{\r\n    \"text\": \"Posttask\",\r\n    \"type\": \"todo\"\r\n}",
                     "options": {
                         "raw": {
                             "language": "json"
@@ -59,21 +59,22 @@
                     }
                 },
                 "url": {
-                    "raw": "{{path}}/api/v4/tags",
+                    "raw": "{{path}}/api/v4/tasks/user",
                     "host": [
                         "{{path}}"
                     ],
                     "path": [
                         "api",
                         "v4",
-                        "tags"
+                        "tasks",
+                        "user"
                     ]
                 }
             },
             "response": []
         },
         {
-            "name": "Get Tags",
+            "name": "Get Tasks",
             "event": [
                 {
                     "listen": "test",
@@ -81,9 +82,9 @@
                         "id": "4e59f3ed-c7f9-4cbc-9877-2a7ed28f156d",
                         "exec": [
                             " var jsonData = pm.response.json();\r",
-                            "pm.test(\"find tag \" + jsonData.data[0].name, function () {\r",
+                            "pm.test(\"found task: \" + jsonData.data[0].text  + \" . Type: \" + jsonData.data[0].type, function () {\r",
                             "\r",
-                            "    // pm.collectionVariables.set(\"tag_Id\", jsonData.data.id);\r",
+                            "    // pm.collectionVariables.set(\"task_Id\", jsonData.data.id);\r",
                             "    pm.response.to.have.status(200);\r",
                             "});\r",
                             "\r",
@@ -94,7 +95,7 @@
                     }
                 }
             ],
-            "id": "2587b8f0-d329-48ec-b6e0-d91e6ee82726",
+            "id": "866e0c10-40df-4846-9996-c19c9451a375",
             "protocolProfileBehavior": {
                 "disableBodyPruning": true
             },
@@ -118,21 +119,22 @@
                     }
                 ],
                 "url": {
-                    "raw": "{{path}}/api/v4/tags",
+                    "raw": "{{path}}/api/v4/tasks/user",
                     "host": [
                         "{{path}}"
                     ],
                     "path": [
                         "api",
                         "v4",
-                        "tags"
+                        "tasks",
+                        "user"
                     ]
                 }
             },
             "response": []
         },
         {
-            "name": "Get Tags list",
+            "name": "Get Tasks list",
             "event": [
                 {
                     "listen": "test",
@@ -143,7 +145,7 @@
                             "\r",
                             "jsonData.data.forEach(h => \r",
                             "{console.log(h)\r",
-                            "    pm.test(\"find tag \" + h.name, function () {\r",
+                            "    pm.test(\"found task \" + h.text + \" . Type: \" + h.type, function () {\r",
                             "    pm.expect(h.id).is.not.null;\r",
                             "    });\r",
                             "}\r",
@@ -154,7 +156,7 @@
                     }
                 }
             ],
-            "id": "c9b4398c-1601-4ecd-bb79-c107584249fb",
+            "id": "9c7248ba-61d8-4c5c-b09c-dd8826d3d50c",
             "protocolProfileBehavior": {
                 "disableBodyPruning": true
             },
@@ -178,21 +180,22 @@
                     }
                 ],
                 "url": {
-                    "raw": "{{path}}/api/v4/tags",
+                    "raw": "{{path}}/api/v4/tasks/user",
                     "host": [
                         "{{path}}"
                     ],
                     "path": [
                         "api",
                         "v4",
-                        "tags"
+                        "tasks",
+                        "user"
                     ]
                 }
             },
             "response": []
         },
         {
-            "name": "Get Tag",
+            "name": "Get Task",
             "event": [
                 {
                     "listen": "test",
@@ -200,9 +203,9 @@
                         "id": "cb8249de-e626-469d-8209-ab2f8a300ff5",
                         "exec": [
                             " var jsonData = pm.response.json();\r",
-                            "pm.test(\"find tag \" + jsonData.data.name, function () {\r",
+                            "pm.test(\"found task: \" + jsonData.data.text  + \" . Type: \" + jsonData.data.type, function () {\r",
                             "\r",
-                            "    // pm.collectionVariables.set(\"tag_Id\", jsonData.data.id);\r",
+                            "    // pm.collectionVariables.set(\"task_Id\", jsonData.data.id);\r",
                             "    pm.response.to.have.status(200);\r",
                             "});\r",
                             "\r",
@@ -213,7 +216,7 @@
                     }
                 }
             ],
-            "id": "ae950b1b-ed9d-4fde-99a3-bb3e0df66251",
+            "id": "df44a045-9f2e-433e-973d-8ac2067ea8ef",
             "protocolProfileBehavior": {
                 "disableBodyPruning": true
             },
@@ -237,22 +240,22 @@
                     }
                 ],
                 "url": {
-                    "raw": "{{path}}/api/v4/tags/{{tag_Id}}",
+                    "raw": "{{path}}/api/v4/tasks/{{task_Id}}",
                     "host": [
                         "{{path}}"
                     ],
                     "path": [
                         "api",
                         "v4",
-                        "tags",
-                        "{{tag_Id}}"
+                        "tasks",
+                        "{{task_Id}}"
                     ]
                 }
             },
             "response": []
         },
         {
-            "name": "Delete Tag",
+            "name": "Delete Task",
             "event": [
                 {
                     "listen": "test",
@@ -271,7 +274,7 @@
                     }
                 }
             ],
-            "id": "88344347-f7c4-4a8e-ab7b-fa4784f1a340",
+            "id": "769b3008-e1be-43e9-917f-beb023d9c23f",
             "protocolProfileBehavior": {
                 "disableBodyPruning": true
             },
@@ -295,15 +298,15 @@
                     }
                 ],
                 "url": {
-                    "raw": "{{path}}/api/v4/tags/{{tag_Id}}",
+                    "raw": "{{path}}/api/v4/tasks/{{task_Id}}",
                     "host": [
                         "{{path}}"
                     ],
                     "path": [
                         "api",
                         "v4",
-                        "tags",
-                        "{{tag_Id}}"
+                        "tasks",
+                        "{{task_Id}}"
                     ]
                 }
             },
@@ -314,29 +317,29 @@
         {
             "listen": "prerequest",
             "script": {
+                "id": "0e7ad812-50da-4628-bb9d-6c719370ff0b",
                 "type": "text/javascript",
                 "exec": [
                     ""
-                ],
-                "id": "daa60d71-6fb2-4a10-98b2-5cd3aea1a870"
+                ]
             }
         },
         {
             "listen": "test",
             "script": {
+                "id": "e9c6c0cb-afca-4d4b-84cd-d4f1cf35e34c",
                 "type": "text/javascript",
                 "exec": [
                     ""
-                ],
-                "id": "be64e478-5fce-4a3c-b55a-6d1f132a8bf9"
+                ]
             }
         }
     ],
     "variable": [
         {
-            "id": "ecbb4821-ed06-42ee-ab0f-32cfd56983b6",
-            "key": "tag_Id",
-            "value": "49f2d02a-b7f1-4174-8b2e-b7dc1f79e003"
+            "id": "a1f50480-8a3e-418c-8f64-120f43d57b48",
+            "key": "task_Id",
+            "value": "c69c0fa2-9982-4f42-b8d3-8779711fbb13"
         }
     ]
 }
