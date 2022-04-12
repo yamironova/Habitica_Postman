@@ -74,6 +74,130 @@
             "response": []
         },
         {
+            "name": "Post Tag to Task",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "id": "45845847-79bf-4cb6-9f2d-2480b7546d5d",
+                        "exec": [
+                            "var jsonData = pm.response.json();\r",
+                            "jsonData.data.tags.forEach(h =>\r",
+                            "{pm.test(\"Task name is \" + jsonData.data.text + \" and tag \" + h + \" was added\", function () {\r",
+                            "    \r",
+                            "    pm.response.to.have.status(200);\r",
+                            "    });\r",
+                            "});\r",
+                            "\r",
+                            "\r",
+                            ""
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "id": "d2d6463b-f9c8-488a-b148-e1f5d0aaf864",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "X-Client",
+                        "value": "{{xClient}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "x-api-user",
+                        "value": "{{userId}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "x-api-key",
+                        "value": "{{API-key}}",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{path}}/api/v4/tasks/{{task_Id}}/tags/{{tag_Id}}",
+                    "host": [
+                        "{{path}}"
+                    ],
+                    "path": [
+                        "api",
+                        "v4",
+                        "tasks",
+                        "{{task_Id}}",
+                        "tags",
+                        "{{tag_Id}}"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Delete Tag from Task",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "id": "45845847-79bf-4cb6-9f2d-2480b7546d5d",
+                        "exec": [
+                            "var jsonData = pm.response.json();\r",
+                            "pm.test(\"Task name is \" + jsonData.data.text, function () {\r",
+                            "    \r",
+                            "    pm.response.to.have.status(200);\r",
+                            "});\r",
+                            "\r",
+                            "\r",
+                            ""
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "id": "1af0ff2c-20f9-47c4-978e-6a657d5defb7",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "DELETE",
+                "header": [
+                    {
+                        "key": "X-Client",
+                        "value": "{{xClient}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "x-api-user",
+                        "value": "{{userId}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "x-api-key",
+                        "value": "{{API-key}}",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{path}}/api/v4/tasks/{{task_Id}}/tags/{{tag_Id}}",
+                    "host": [
+                        "{{path}}"
+                    ],
+                    "path": [
+                        "api",
+                        "v4",
+                        "tasks",
+                        "{{task_Id}}",
+                        "tags",
+                        "{{tag_Id}}"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
             "name": "Get Tasks",
             "event": [
                 {
@@ -317,7 +441,7 @@
         {
             "listen": "prerequest",
             "script": {
-                "id": "0e7ad812-50da-4628-bb9d-6c719370ff0b",
+                "id": "bf40acc2-f307-4757-bbcf-e8bf9113e3e4",
                 "type": "text/javascript",
                 "exec": [
                     ""
@@ -327,7 +451,7 @@
         {
             "listen": "test",
             "script": {
-                "id": "e9c6c0cb-afca-4d4b-84cd-d4f1cf35e34c",
+                "id": "01ba1179-154d-4e27-b94f-741fd62bd422",
                 "type": "text/javascript",
                 "exec": [
                     ""
@@ -337,9 +461,15 @@
     ],
     "variable": [
         {
-            "id": "a1f50480-8a3e-418c-8f64-120f43d57b48",
+            "id": "072fc900-7a25-419d-bb41-a32f52ed9bcc",
             "key": "task_Id",
-            "value": "c69c0fa2-9982-4f42-b8d3-8779711fbb13"
+            "value": "bfe94488-b3cb-4122-8bf6-8e083b62b5c4"
+        },
+        {
+            "id": "fc517fef-06dc-49c4-a229-929cbf8482b5",
+            "key": "tag_Id",
+            "value": "6ec02ede-984a-4169-b3fa-8c67af8b3266",
+            "type": "string"
         }
     ]
 }
